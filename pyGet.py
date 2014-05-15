@@ -3,8 +3,8 @@ import time
 import pypruss
 import sys
 
-interval = 20
-
+interval = 5
+pru_delay = 5
 while 1:
 	cmdstr = 'wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip 2>&1 | grep -o \'\([0-9.]\+ [KM]B/s\)\' | grep -o \'\([0-9.]\+\)\''
 	#print cmdstr
@@ -30,24 +30,12 @@ while 1:
 	pypruss.pruintc_init()								# Init the interrupt controller
 
 	if percentChange < -5:
-		pypruss.exec_program(0,"./other.bin")
-		pypruss.wait_for_event(0)							# Wait for event 0 which is connected to PRU0_ARM_INTERRUPT
-		pypruss.clear_event(0)								# Clear the event
-		time.sleep(0.1)
 		pypruss.exec_program(0,"./red.bin")
 	else: 
 		if percentChange < 0:
-			pypruss.exec_program(0,"./other.bin")
-			pypruss.wait_for_event(0)							# Wait for event 0 which is connected to PRU0_ARM_INTERRUPT
-			pypruss.clear_event(0)								# Clear the event
-			time.sleep(0.1)
 			pypruss.exec_program(0,"./orange.bin")
 		else:
 			if percentChange > 0:
-				pypruss.exec_program(0,"./other.bin")
-				pypruss.wait_for_event(0)							# Wait for event 0 which is connected to PRU0_ARM_INTERRUPT
-				pypruss.clear_event(0)								# Clear the event
-				time.sleep(0.1)
 				pypruss.exec_program(0,"./green.bin")
 			else:
 				pypruss.exec_program(0,"./other.bin")   #should never hit this
@@ -57,3 +45,4 @@ while 1:
 	pypruss.pru_disable(0)								# Disable PRU 0, this is already done by the firmware
 	pypruss.exit()									# Exits pypruss 
 	time.sleep(interval)                        						# restarts speed evaluation after 'interval' seconds
+

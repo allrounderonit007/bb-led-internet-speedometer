@@ -11,7 +11,8 @@
 // echo BB-BONE-PRU > $SLOTS
 
 #define OUT_PIN             r30.t14        // pin P8_12
-#define NUMBER_OF_SEGMENTS  3              // number of light segments to illuminate
+#define SEGMENTS_PER_STRIP  10             // number of light segments to illuminate
+#define SEGMENTS_TO_LIGHT   7              // number of light segments to illuminate
 
 // this include needs to come after the above definitions so as not to cause assembler errors
 #include "tm1803.p"
@@ -44,10 +45,10 @@
  */
 START:
     INIT
-    MOV r1, NUMBER_OF_SEGMENTS          // set register 1 to the number of segments to illuminate
+    MOV r1, SEGMENTS_TO_LIGHT          // set register 1 to the number of segments to illuminate
     SEND_RESET
     
-SENDRED:
+SENDCOLOR:
     // SEND 24 bits equalling 111111110000000000000000 to turn on a red LED
     // Loop this 10 times to turn on 10 of them.
     // Instructions are based on time between raise and fall.
@@ -66,6 +67,8 @@ SENDRED:
 
     SEGMENT_END
 
-    QBNE SENDRED, r1,0                  // if (register 1 is not equal to 0) then goto to SENDRED
+    QBNE SENDCOLOR, r1,0                  // if (register 1 is not equal to 0) then goto to SENDCOLOR
+
+    SEND_EMPTY_SEGMENTS (SEGMENTS_PER_STRIP-SEGMENTS_TO_LIGHT)
 
     SHUTDOWN
