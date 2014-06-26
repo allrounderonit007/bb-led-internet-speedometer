@@ -60,8 +60,8 @@ SENDRED:
 
     SUB r1, r1, 1 // subtract 1 from register 1
 
-    SEND_BYTE 0xFF
     SEND_BYTE 0x00
+    SEND_BYTE 0xFF
     SEND_BYTE 0x00
 
     SEGMENT_END
