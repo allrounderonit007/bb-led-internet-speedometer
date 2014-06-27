@@ -3,8 +3,7 @@ import time
 import pypruss
 import sys
 
-interval = 5
-pru_delay = 5
+interval = 20
 while 1:
 	cmdstr = 'wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip 2>&1 | grep -o \'\([0-9.]\+ [KM]B/s\)\' | grep -o \'\([0-9.]\+\)\''
 	#print cmdstr

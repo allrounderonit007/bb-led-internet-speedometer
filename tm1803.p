@@ -68,6 +68,9 @@ loopend:
 
 .endm
 
+/*
+ *  SEND_EMPTY_SEGMENTS
+ */
 .macro SEND_EMPTY_SEGMENTS
 .mparam number_of_segments
     mov r4, (number_of_segments)
@@ -80,6 +83,7 @@ send_segment:
     qbne send_segment, r4, 0
 
 .endm
+
 /*
  *  SEGMENT_END
  *  delay for 3.25us (650 cycles) in between each segment

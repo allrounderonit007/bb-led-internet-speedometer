@@ -49,7 +49,7 @@ START:
     SEND_RESET
     
 SENDCOLOR:
-    // SEND 24 bits equalling 111111110000000000000000 to turn on a red LED
+    // Send 24 bits equaling 000000001111111100000000 to turn on a red LED
     // Loop this 10 times to turn on 10 of them.
     // Instructions are based on time between raise and fall.
     // 0 is .7us high followed by 1.8us low.

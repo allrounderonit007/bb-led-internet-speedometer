@@ -1,22 +1,23 @@
 
 COMPILER=../../PASM/pasm -b 
-SOURCES=other.p \
-		blue.p \
-		red.p \
+SOURCES=blue.p \
 		green.p \
-		orange.p
+		orange.p \
+		other.p \
+		red.p
 
 OBJECTS=$(SOURCES:.p=.bin)
 .PHONY: clean all
 
 all: $(OBJECTS)
-	@echo "Finished building PRU binaries!"
+	@echo "\033[32m  Finished building PRU binaries! \033[39m"
 
 %.bin: %.p
-	@echo "Building $<"
-	$(COMPILER) -b $<
+	@echo "\033[34m  Building $<\033[39m"
+	$(COMPILER) $<
 
-clean: 
+clean:
+	@echo "\033[32m  Removing object files $(OBJECTS) \033[39m"
 	rm -rf $(OBJECTS)
 
 
