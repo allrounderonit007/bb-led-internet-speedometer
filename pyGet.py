@@ -31,14 +31,20 @@ while 1:
 
 	if percentChange < -5:
 		pypruss.exec_program(0,"./other.bin")
+			pypruss.wait_for_event(0)							# Wait for event 0 which is connected to PRU0_ARM_INTERRUPT
+			pypruss.clear_event(0)								# Clear the event
 		pypruss.exec_program(0,"./red.bin")
 	else: 
 		if percentChange < 0:
 			pypruss.exec_program(0,"./other.bin")
+			pypruss.wait_for_event(0)							# Wait for event 0 which is connected to PRU0_ARM_INTERRUPT
+			pypruss.clear_event(0)								# Clear the event
 			pypruss.exec_program(0,"./orange.bin")
 		else:
 			if percentChange > 0:
 				pypruss.exec_program(0,"./other.bin")
+				pypruss.wait_for_event(0)							# Wait for event 0 which is connected to PRU0_ARM_INTERRUPT
+				pypruss.clear_event(0)								# Clear the event
 				pypruss.exec_program(0,"./green.bin")
 			else:
 				pypruss.exec_program(0,"./other.bin")   #should never hit this
