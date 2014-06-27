@@ -11,7 +11,7 @@
 // echo BB-BONE-PRU > $SLOTS
 
 #define OUT_PIN             r30.t14        // pin P8_12
-#define NUMBER_OF_SEGMENTS  3              // number of light segments to illuminate
+#define NUMBER_OF_SEGMENTS  5              // number of light segments to illuminate
 
 // this include needs to come after the above definitions so as not to cause assembler errors
 #include "tm1803.p"
