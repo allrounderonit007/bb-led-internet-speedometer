@@ -48,6 +48,6 @@ while 1:
 	#pypruss.clear_event(1)
 	pypruss.pru_disable(0)								# Disable PRU 0, this is already done by the firmware
 	#pypruss.pru_disable(1)
-	pypruss.exit()									# Exits pypruss 
+	#pypruss.exit()									# Exits pypruss 
 	time.sleep(interval)                        						# restarts speed evaluation after 'interval' seconds
 
