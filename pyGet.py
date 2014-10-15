@@ -36,11 +36,11 @@ while 1:
 	#else: 
 	#	if percentChange < 0:
 	#		pypruss.exec_program(1,"./orange.bin")
+	else:
+		if percentChange >= 0:
+			pypruss.exec_program(0,"./green.bin")
 		else:
-			if percentChange >= 0:
-				pypruss.exec_program(0,"./green.bin")
-			else:
-				pypruss.exec_program(0,"./other.bin")   #should never hit this
+			pypruss.exec_program(0,"./other.bin")   #should never hit this
 		
 	pypruss.wait_for_event(0)							# Wait for event 0 which is connected to PRU0_ARM_INTERRUPT
 	#pypruss.wait_for_event(1)
