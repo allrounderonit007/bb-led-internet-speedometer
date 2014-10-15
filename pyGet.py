@@ -27,27 +27,27 @@ while 1:
 	pypruss.init()										# Init the PRU
 	pypruss.open(0)										# Open PRU event 0 which is PRU0_ARM_INTERRUPT
 	pypruss.pruintc_init()
-	pypruss.init()
-	pypruss.open(1)
-	pypruss.pruintc_init()								# Init the interrupt controller
+	#pypruss.init()
+	#pypruss.open(1)
+	#pypruss.pruintc_init()								# Init the interrupt controller
 
-	if percentChange < -5:
+	if percentChange < 0:
 		pypruss.exec_program(0,"./red.bin")
-	else: 
-		if percentChange < 0:
-			pypruss.exec_program(1,"./orange.bin")
+	#else: 
+	#	if percentChange < 0:
+	#		pypruss.exec_program(1,"./orange.bin")
 		else:
-			if percentChange > 0:
+			if percentChange >= 0:
 				pypruss.exec_program(0,"./green.bin")
 			else:
 				pypruss.exec_program(0,"./other.bin")   #should never hit this
 		
 	pypruss.wait_for_event(0)							# Wait for event 0 which is connected to PRU0_ARM_INTERRUPT
-	pypruss.wait_for_event(1)
+	#pypruss.wait_for_event(1)
 	pypruss.clear_event(0)								# Clear the event
-	pypruss.clear_event(1)
+	#pypruss.clear_event(1)
 	pypruss.pru_disable(0)								# Disable PRU 0, this is already done by the firmware
-	pypruss.pru_disable(1)
+	#pypruss.pru_disable(1)
 	pypruss.exit()									# Exits pypruss 
 	time.sleep(interval)                        						# restarts speed evaluation after 'interval' seconds
 
