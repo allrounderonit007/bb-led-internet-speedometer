@@ -68,7 +68,7 @@ SENDCOLOR:
     SEGMENT_END
 
     QBNE SENDCOLOR, r1,0                  // if (register 1 is not equal to 0) then goto to SENDCOLOR
-
+    time.sleep(20)
     SEND_EMPTY_SEGMENTS (SEGMENTS_PER_STRIP-SEGMENTS_TO_LIGHT)
 
     SHUTDOWN
