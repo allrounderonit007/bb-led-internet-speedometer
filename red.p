@@ -10,7 +10,7 @@
 // export SLOTS=/sys/devices/bone_capemgr.*/slots
 // echo BB-BONE-PRU > $SLOTS
 
-#define OUT_PIN             r30.t14        // pin P8_12
+#define OUT_PIN             r30.t15        // pin P8_11
 #define SEGMENTS_PER_STRIP  10             // number of light segments to illuminate
 #define SEGMENTS_TO_LIGHT  3              // number of light segments to illuminate
 
