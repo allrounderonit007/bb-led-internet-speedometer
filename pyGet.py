@@ -29,7 +29,7 @@ while 1:
 		GPIO.output("P8_10", GPIO.HIGH)
 		GPIO.output("P8_14", GPIO.LOW)
 		GPIO.output("P8_18",GPIO.LOW)
-		time.sleep(10);
+		time.sleep(10)
 	else: 
 		if percentChange in range(0,-6,-1):
 			GPIO.output("P8_10", GPIO.LOW)
@@ -37,7 +37,13 @@ while 1:
 			GPIO.output("P8_18",GPIO.LOW)
 			time.sleep(10)
 		else:
-			GPIO.output("P8_10", GPIO.LOW)
-			GPIO.output("P8_14", GPIO.LOW)
-			GPIO.output("P8_18",GPIO.HIGH)
-			time.sleep(10)
+			if percentChange >0:
+				GPIO.output("P8_10", GPIO.LOW)
+				GPIO.output("P8_14", GPIO.LOW)
+				GPIO.output("P8_18",GPIO.HIGH)
+				time.sleep(10)
+			else:
+				GPIO.output("P8_10", GPIO.LOW)
+				GPIO.output("P8_14", GPIO.HIGH)
+				GPIO.output("P8_18",GPIO.LOW)
+				time.sleep(10)
