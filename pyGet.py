@@ -35,6 +35,6 @@ while 1:
 			GPIO.output("P8_14", GPIO.HIGH)
 			GPIO.output("P8_18",GPIO.LOW)
 		else:
-			GPIO.output("P8_10", GPIO.LOw)
+			GPIO.output("P8_10", GPIO.LOW)
 			GPIO.output("P8_14", GPIO.LOW)
 			GPIO.output("P8_18",GPIO.HIGH)
