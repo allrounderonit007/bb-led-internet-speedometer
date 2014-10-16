@@ -1,9 +1,12 @@
-import subprocess
+import Adafruit_BBIO.GPIO as GPIO
 import time
-import pypruss
+import subprocess
 import sys
 
-interval = 20
+GPIO.setup("P8_10", GPIO.OUT)
+GPIO.setup("P8_14", GPIO.OUT)
+GPIO.setup("P8_18", GPIO.OUT)
+
 while 1:
 	cmdstr = 'wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip 2>&1 | grep -o \'\([0-9.]\+ [KM]B/s\)\' | grep -o \'\([0-9.]\+\)\''
 	#print cmdstr
@@ -21,33 +24,11 @@ while 1:
 	f = open('speed.txt', 'w')
 	f.write (speed[0])
 	f.close()
-
-
-	pypruss.modprobe() 			  				       	# This only has to be called once pr boot
-	pypruss.init()										# Init the PRU
-	pypruss.open(0)										# Open PRU event 0 which is PRU0_ARM_INTERRUPT
-	pypruss.pruintc_init()
-	#pypruss.init()
-	#pypruss.open(1)
-	#pypruss.pruintc_init()								# Init the interrupt controller
-
-	if percentChange < 0:
-		pypruss.exec_program(0,"./red.bin")
-	#else: 
-	#	if percentChange < 0:
-	#		pypruss.exec_program(1,"./orange.bin")
-	else:
-		if percentChange >= 0:
-			pypruss.exec_program(0,"./green.bin")
+	
+	if percentChange < -5:
+		GPIO.output("P8_10", GPIO.HIGH)
+	else: 
+		if percentChange in range(0,-6,-1):
+			GPIO.output("P8_14", GPIO.HIGH)
 		else:
-			pypruss.exec_program(0,"./other.bin")   #should never hit this
-		
-	pypruss.wait_for_event(0)							# Wait for event 0 which is connected to PRU0_ARM_INTERRUPT
-	#pypruss.wait_for_event(1)
-	pypruss.clear_event(0)								# Clear the event
-	#pypruss.clear_event(1)
-	pypruss.pru_disable(0)								# Disable PRU 0, this is already done by the firmware
-	#pypruss.pru_disable(1)
-	pypruss.exit()									# Exits pypruss 
-	time.sleep(interval)                        						# restarts speed evaluation after 'interval' seconds
-
+			GPIO.output("P8_18", GPIO.HIGH)
