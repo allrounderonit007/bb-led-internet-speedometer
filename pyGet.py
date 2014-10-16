@@ -26,23 +26,27 @@ while 1:
 	f.close()
 	
 	if percentChange < -5:
+		print 'green'
 		GPIO.output("P8_10", GPIO.HIGH)
 		GPIO.output("P8_14", GPIO.LOW)
 		GPIO.output("P8_18",GPIO.LOW)
 		time.sleep(10)
 	else: 
 		if percentChange in range(0,-6,-1):
+			print 'red'
 			GPIO.output("P8_10", GPIO.LOW)
 			GPIO.output("P8_14", GPIO.HIGH)
 			GPIO.output("P8_18",GPIO.LOW)
 			time.sleep(10)
 		else:
 			if percentChange >0:
+				print 'blue'
 				GPIO.output("P8_10", GPIO.LOW)
 				GPIO.output("P8_14", GPIO.LOW)
 				GPIO.output("P8_18",GPIO.HIGH)
 				time.sleep(10)
 			else:
+				print 'red'
 				GPIO.output("P8_10", GPIO.LOW)
 				GPIO.output("P8_14", GPIO.HIGH)
 				GPIO.output("P8_18",GPIO.LOW)
